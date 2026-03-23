@@ -1,0 +1,30 @@
+---
+import "../styles/variables.css";
+---
+
+<div class="hero-content">
+    <h1>Neuer Hafen.<br />Alte Crew.</h1>
+</div>
+
+<style>
+    .hero-content {
+        height: 100vh;
+    }
+    h1 {
+        font-size: clamp(5vh, 15vw, 11.5rem);
+        @media (orientation: landscape) {
+            font-size: 20vh;
+        }
+        @media (max-width: 970px)  {
+            font-size: clamp(5vh, 14vw, 11.5rem);
+        }
+        @media (max-width: 768px)  {
+            padding-left: 1rem;
+        }
+        font-weight: 500;
+        text-align: left;
+        line-height: 95%;
+
+
+    }
+</style>

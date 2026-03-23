@@ -1,17 +1,55 @@
 ---
+import RowSection from "../components/RowSection.astro";
+import RegistrationForm from "../components/RegistrationForm.svelte";
+import "../styles/variables.css";
+import "../styles/global.css";
 
+import Hero from "../components/Hero.astro";
+import Header from "../components/Header.svelte";
+import NewLocation from "../components/NewLocation.svelte";
+import Ocean from "../components/Ocean.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="preload"
+      href="/PPNeueMontreal-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fredmansky x Schiffmeisterhaus</title>
+  </head>
+  <body>
+    <RowSection class="hero">
+      <Hero />
+    </RowSection>
+
+    <RowSection class="location">
+      <NewLocation client:load />
+    </RowSection>
+
+    <RowSection class="form">
+      <RegistrationForm client:load />
+    </RowSection>
+
+    <Ocean client:load />
+    <Header client:load />
+  </body>
 </html>

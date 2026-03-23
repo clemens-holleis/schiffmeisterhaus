@@ -1,0 +1,31 @@
+:root {
+  font-size: 16px;
+  --font-heading: 'PP Neue Montreal', sans-serif;
+  --font-body: 'PP Neue Montreal', sans-serif;
+
+  --color-primary: #000000;
+  --color-secondary: #F4A261;
+  --color-accent: #ff0000;
+
+  --color-background: #F8F9FA;
+  --color-surface: #FFFFFF;
+  --color-surface-dark: #000000;
+  --color-text: #000000;
+  --color-text-on-dark: #ffffff;
+  --color-text-muted: #6C757D;
+
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 6px 12px rgba(0, 0, 0, 0.1);
+
+  --radius-sm: 0px;
+  --radius-md: 8px;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+}
+
+

@@ -1,0 +1,202 @@
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+small {
+  font-size: 0.875rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0a2d42;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.hero .hero-content {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.features .section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.feature-card {
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.feature-card h3 {
+  color: var(--color-primary);
+}
+
+.cta .cta-content {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.cta h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.cta p {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact .contact-content {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.contact>.row-container>.contact-content>p {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+
+/* @media (prefers-color-scheme: light) {
+  #logo {
+    filter: invert();
+  }
+} */
+#logo{
+  width: min(190px,50dvw);
+}
+
+body {
+  padding-bottom: 80px;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.footer-content nav {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.footer-content nav a {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.footer-content nav a:hover {
+  color: var(--color-primary);
+}

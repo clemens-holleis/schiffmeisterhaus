@@ -1,0 +1,171 @@
+<footer class="footer">
+  <img src="/kutter.svg" alt="" id="boat" data-rotate="5" />
+  <img src="/sea.svg" alt="" id="sea" />
+</footer>
+
+<style>
+  @keyframes boatUp {
+    0%,
+    100% {
+      transform: translateY(5dvh) rotate(-5deg);
+    }
+    50% {
+      transform: translateY(0dvh) rotate(5deg);
+    }
+  }
+  @keyframes boatUpLow {
+    0%,
+    100% {
+      transform: translateY(0.8dvh) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(2dvh) rotate(3deg);
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0vh;
+    height: 10dvh;
+    right: 0vw;
+    width: 100dvw;
+    background: transparent;
+    z-index: 100;
+    pointer-events: none;
+    padding:0px;
+    margin:0px;
+  }
+
+  #boat {
+    --size: 150px;
+    position: absolute;
+    top: calc(var(--size) * -1 + 10px);
+    right: 4vw;
+    height: var(--size);
+    animation: boatUp 4s ease-in-out infinite;
+    @media (orientation: portrait) {
+      animation: boatUpLow 4s ease-in-out infinite;
+    }
+  }
+  #sea {
+    position: absolute;
+    width: 100dvw;
+    top: 0vh;
+    right: 0px;
+    transform-origin: top;
+    transform: scale(1, 1.5);
+    padding:0;
+    margin:0;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { isMobileDevice } from "../utils/utils";
+
+  class ScrollStateMachine {
+    static States = Object.freeze({
+      IDLE: "idle",
+      STARTED: "started",
+      RUNNING: "running",
+      STOPPED: "stopped",
+    });
+    state: "idle" | "started" | "running" | "stopped";
+
+    constructor() {
+      this.state = ScrollStateMachine.States.IDLE;
+    }
+
+    setState(newState: "idle" | "started" | "running" | "stopped") {
+      if (!Object.values(ScrollStateMachine.States).includes(newState)) {
+        throw new Error(`Invalid state: ${newState}`);
+      }
+      this.state = newState;
+      console.debug(`set state to ${newState}`);
+    }
+
+    is(state: "idle" | "started" | "running" | "stopped") {
+      return this.state === state;
+    }
+
+    get isIdle() {
+      return this.state === ScrollStateMachine.States.IDLE;
+    }
+    get isRunning() {
+      return this.state === ScrollStateMachine.States.RUNNING;
+    }
+    setIdle() {
+      this.setState(ScrollStateMachine.States.IDLE);
+    }
+    setStart() {
+      this.setState(ScrollStateMachine.States.STARTED);
+    }
+    setRunning() {
+      this.setState(ScrollStateMachine.States.RUNNING);
+    }
+  }
+
+  const footer = document.querySelector(".footer");
+
+  let lastScrollY = window.scrollY;
+  let lastTime: null | number = null;
+  let velocity = 0;
+
+  let resetTween: any;
+  let scrollTimeout: any;
+
+  const scrollState = new ScrollStateMachine();
+
+  function calcMoveY() {
+    const now = performance.now();
+    const currentScrollY = window.scrollY;
+
+    const deltaY = currentScrollY - lastScrollY;
+    const deltaTime = now - lastTime;
+
+    velocity = deltaY / deltaTime;
+
+    const moveY = Math.max(-40, Math.min(40, velocity * 80));
+
+    lastScrollY = currentScrollY;
+    lastTime = now;
+    return moveY;
+  }
+  function update() {
+    if (lastTime === null) {
+      lastTime = performance.now();
+      return;
+    }
+    if (!scrollState.isIdle) return;
+    scrollState.setStart();
+    resetTween = gsap_to_y(calcMoveY());
+    scrollState.setRunning();
+  }
+
+  function gsap_to_y(moveY: number) {
+    console.debug(`animate to ${moveY}`);
+
+    resetTween?.kill();
+    return gsap.to(footer, {
+      y: moveY,
+      duration: 6,
+      ease: "elastic.out(2,0.2)",
+    });
+  }
+
+  window.addEventListener("scroll", () => {
+    if(isMobileDevice())return;
+    update();
+
+    if (scrollTimeout) {
+      console.debug("timeout stopped");
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(() => {
+      if (!scrollState.isRunning) return;
+      resetTween = gsap_to_y(0);
+      lastTime = null;
+      scrollState.setIdle();
+    }, 200);
+  });
+</script>

@@ -1,5 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import svelte from '@astrojs/svelte';
+import terser from '@rollup/plugin-terser';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  integrations: [svelte()],
+  vite: {
+    build: {
+      rollupOptions: {
+        plugins: [terser({ compress: { drop_console: true, drop_debugger: true } })]
+      }
+    }
+  }
+});

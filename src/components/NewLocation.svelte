@@ -70,7 +70,7 @@
     <br />
     Der Käptn hat Laune! Kommt an Bord und feiert mit.
     <br>
-    Stapellauf ist am 01.05.1026 ab 16:00 Uhr.
+    Stapellauf ist am 01.05.2026 ab 16:00 Uhr.
   </p>
   <img id="flair" src="/jack.gif" alt="flair" />
   <img id="flairMobile" src="/jack.gif" />

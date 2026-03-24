@@ -89,7 +89,7 @@
     font-size: 2rem;
   }
   .container {
-    height: 50vh;
+    min-height: 50vh;
     padding-left: 5vw;
     padding-right: 5vw;
     background-color: var(--color-surface);
